@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proposta Comercial - Menu Virtual</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .fade-in {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .fade-in.show {
+        opacity: 1;
+        transform: scale(1);
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-100 text-gray-800 font-sans">
+    <div
+      class="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden"
+    >
+      <!-- Banner -->
+      <div
+        class="relative h-72 bg-gradient-to-r from-purple-600 via-blue-700 to-pink-500 flex items-center justify-center"
+      >
+        <div
+          class="bg-white rounded-full p-2 shadow-lg w-36 h-36 flex items-center justify-center"
+        >
+          <img
+            src="logo.jpeg"
+            alt="Logo CazaTech"
+            class="w-32 h-32 rounded-full object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- Conteúdo -->
+      <div class="p-8">
+        <h1 class="text-3xl font-bold mb-4 text-center text-purple-700">
+          Menu Virtual
+        </h1>
+
+        <!-- Botões de Opções -->
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+          <button
+            onclick="mostrarGaleria(1)"
+            class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+          >
+            Opção 1
+          </button>
+          <button
+            onclick="mostrarGaleria(2)"
+            class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+          >
+            Opção 2
+          </button>
+          <button
+            onclick="mostrarGaleria(3)"
+            class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+          >
+            Opção 3
+          </button>
+          <button
+            onclick="mostrarGaleria(4)"
+            class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+          >
+            Opção 4
+          </button>
+        </div>
+
+        <!-- Galeria de Imagens -->
+        <div
+          id="galeria"
+          class="relative h-[500px] flex items-center justify-center hidden fade-in"
+        >
+          <img
+            id="img1"
+            src="cardapio1.png"
+            alt="Modelo 1"
+            class="absolute max-h-full rounded shadow transform transition duration-500 ease-in-out opacity-0"
+          />
+          <img
+            id="img2"
+            src="cardapio2.png"
+            alt="Modelo 2"
+            class="absolute max-h-full rounded shadow transform transition duration-500 ease-in-out opacity-0"
+          />
+          <img
+            id="img3"
+            src="cardapio3.png"
+            alt="Modelo 3"
+            class="absolute max-h-full rounded shadow transform transition duration-500 ease-in-out opacity-0"
+          />
+          <img
+            id="img4"
+            src="cardapio4.png"
+            alt="Modelo 4"
+            class="absolute max-h-full rounded shadow transform transition duration-500 ease-in-out opacity-0"
+          />
+        </div>
+
+        <!-- Benefícios -->
+        <div class="mt-8">
+          <h2 class="text-xl font-semibold mb-2 text-blue-700">
+            Funcionalidades Inclusas:
+          </h2>
+          <ul class="list-disc list-inside space-y-1">
+            <li>Design moderno e responsivo</li>
+            <li>Categoria e listagem de produtos</li>
+            <li>Fotos e descrições dos pratos</li>
+            <li>Integração com redes sociais</li>
+          </ul>
+        </div>
+
+        <!-- Pacotes e Valores -->
+        <div class="mt-8">
+          <h2 class="text-xl font-semibold mb-4 text-purple-700">
+            Pacotes e Valores:
+          </h2>
+
+          <div class="bg-gray-100 p-4 rounded-lg mb-4">
+            <h3 class="text-lg font-bold text-purple-700 mb-2">
+              Desenvolvimento Simples
+            </h3>
+            <p class="mb-2">
+              Inclui: Página única com layout personalizado + Cadastro de todas
+              as categorias e produtos.
+            </p>
+            <strong class="block">R$ 400,00 (pagamento único)</strong>
+          </div>
+
+          <div class="bg-gray-100 p-4 rounded-lg mb-4">
+            <h3 class="text-lg font-bold text-purple-700 mb-2">
+              Menu Flutuante (Cardápio dinâmico)
+            </h3>
+            <p class="mb-2">Opções:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>
+                <strong>Suporte técnico mensal:</strong> +R$ 80,00/mês
+                (atualizações feitas por nós)
+              </li>
+              <li>
+                <strong>Autonomia completa:</strong> +R$ 300,00 (sistema para o
+                próprio restaurante editar produtos e categorias)
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Botão -->
+        <div class="text-center mt-8">
+          <a
+            href="#"
+            class="inline-block bg-purple-700 text-white px-6 py-3 rounded-full text-lg shadow hover:bg-purple-800 transition"
+            >Solicitar Agora</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function mostrarGaleria(opcao) {
+        const galeria = document.getElementById("galeria");
+        const imgs = galeria.querySelectorAll("img");
+
+        if (galeria.classList.contains("hidden")) {
+          galeria.classList.remove("hidden");
+          setTimeout(() => galeria.classList.add("show"), 10);
+        }
+
+        imgs.forEach((img, index) => {
+          if (index === opcao - 1) {
+            img.classList.remove("opacity-0");
+            img.classList.add("opacity-100");
+          } else {
+            img.classList.remove("opacity-100");
+            img.classList.add("opacity-0");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
