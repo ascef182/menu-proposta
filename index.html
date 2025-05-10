@@ -402,6 +402,10 @@
     </div>
 
     <script>
+      let current = 1;
+      let intervalId;
+      let userInteracted = false;
+
       function mostrarGaleria(opcao) {
         const galeria = document.getElementById("galeria");
         const containers = galeria.querySelectorAll(".image-container");
@@ -418,7 +422,31 @@
             container.classList.remove("active");
           }
         });
+
+        current = opcao;
+        userInteracted = true;
+
+        // Reinicia o loop após 10 segundos da interação
+        clearTimeout(restartTimeout);
+        restartTimeout = setTimeout(() => {
+          userInteracted = false;
+        }, 1000);
       }
+
+      function rotacionarGaleria() {
+        if (!userInteracted) {
+          current = current >= 4 ? 1 : current + 1;
+          mostrarGaleria(current);
+        }
+      }
+
+      // Inicia ao carregar a página
+      window.addEventListener("DOMContentLoaded", () => {
+        mostrarGaleria(1); // Mostra o primeiro layout
+        intervalId = setInterval(rotacionarGaleria, 1000); // Troca a cada 5s
+      });
+
+      let restartTimeout;
     </script>
   </body>
 </html>
